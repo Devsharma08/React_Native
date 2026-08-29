@@ -6,7 +6,7 @@ import Spacer from '../../components/Spacer'
 
 const Create = () => {
   return (
-    <ThemedView style={styles.container}>
+    <ThemedView isSafe={true} style={styles.container}>
       <ThemedText isTitle={true} style={styles.heading}>Add a new book</ThemedText>
       <Spacer />
     </ThemedView>
@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         alignItems:"stretch",
-        justifyContent:"center"
     },
     heading:{
         fontSize:18,
