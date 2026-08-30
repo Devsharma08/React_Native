@@ -4,12 +4,15 @@ import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { Colors } from "../constants/Colors";
 
+// context imports
+import {UserProvider} from '../context/userContext';
+
 const Layout = () => {
   const colorScheme = useColorScheme();
   const theme = Colors[colorScheme] ?? Colors.light;
 
   return (
-    <>
+    <UserProvider>
       {/* <Slot/> */}
       <StatusBar value="auto" />
       <Stack
@@ -28,7 +31,7 @@ const Layout = () => {
         <Stack.Screen  name="(dashboard)" options={{ headerShown: false }} />
       </Stack>
       <Text style={styles.footer}>footer</Text>
-    </>
+    </UserProvider>
   );
 };
 

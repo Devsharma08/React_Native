@@ -1,17 +1,31 @@
-import { StyleSheet, Pressable,Text } from 'react-native'
+import {useState} from 'react';
+
+import { StyleSheet } from 'react-native'
 import {Link} from 'expo-router';
 import {Colors} from '../../constants/Colors';
-
+import { useUser } from '../../hooks/userHook';
 
 // theme components
 import ThemedView from '../../components/ThemedView';
 import ThemedText from '../../components/ThemedText';
 import Spacer from '../../components/Spacer';
-import ThemedPressable from '../../components/ThemedPressable';
+import ThemedButton from '../../components/ThemedButton';
+import ThemedTextInput from '../../components/ThemedTextInput'
 const Register = () => {
 
-    const handleSubmit = () => {
-        console.log("handle submit");
+    const [email,setEmail] = useState("");
+    const [password,setPassword] = useState("");
+
+    const {user,register} = useUser();
+    const handleSubmit = async () => {
+        try {
+            
+            await register(email,password);
+            console.log("current user is ",user);
+        } catch (error) {
+            console.log(error);
+            
+        }
     }
   return (
 
@@ -22,12 +36,26 @@ const Register = () => {
         Register to Your Account
     </ThemedText>
     <Spacer height={100}/>
-    <ThemedPressable content="Register" onPress={handleSubmit} style={[styles.btn]} />
+    <ThemedTextInput
+        style={{ width: "80%", marginBottom: 20 }}
+        placeholder="Email"
+        value={email}
+        keyboardType="email-address"
+        onChangeText={setEmail}
+      />
+      <ThemedTextInput
+        style={{ width: "80%", marginBottom: 20 }}
+        placeholder="Password"
+        value={password}
+        secureTextEntry
+        onChangeText={setPassword}
+      />
+    <ThemedButton content="Register" onPress={handleSubmit} style={styles.btn} />
     <Link href={'/login'} style={{
         textAlign:"center",
         color:"#fff"
     }}>
-        Register
+        Login instead
     </Link>
     </ThemedView>
   )
@@ -52,7 +80,6 @@ const styles = StyleSheet.create({
     btn:{
         padding:10,
         justifyContent:"center",
-        backgroundColor:Colors.primary,
         margin:20,
         borderRadius:10,
     }

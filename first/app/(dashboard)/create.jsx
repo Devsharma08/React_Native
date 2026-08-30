@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import ThemedView from '../../components/ThemedView';
 import ThemedText from '../../components/ThemedText';
 import Spacer from '../../components/Spacer'
@@ -6,7 +6,7 @@ import Spacer from '../../components/Spacer'
 
 const Create = () => {
   return (
-    <ThemedView isSafe={true} style={styles.container}>
+    <ThemedView style={styles.container}>
       <ThemedText isTitle={true} style={styles.heading}>Add a new book</ThemedText>
       <Spacer />
     </ThemedView>
