@@ -1,4 +1,4 @@
-import { Text, useColorScheme } from 'react-native';
+import { Text, useColorScheme,StyleSheet } from 'react-native';
 import React from 'react';
 
 import { Colors } from '../constants/Colors';
@@ -16,3 +16,5 @@ const ThemedText = ({ style, children, content, isTitle = false }) => {
 };
 
 export default ThemedText;
+
+

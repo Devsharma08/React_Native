@@ -1,10 +1,14 @@
 import { useContext } from "react";
-import { userProvider } from "../context/userContext";
+import { UserContext } from "../context/userContext";
 
 function useUser() {
-  const user = useContext(userProvider);
-  if (!user) new Error("Unable to locate user please try again");
-  return user;
+  const context = useContext(UserContext);
+
+  if (!context) {
+    throw new Error("Unable to locate user context. Ensure UserProvider wraps the app.");
+  }
+
+  return context;
 }
 
 export default useUser;
