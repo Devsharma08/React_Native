@@ -1,18 +1,22 @@
 import { StyleSheet, Text, View, Image, useColorScheme } from "react-native";
 import { Link } from "expo-router";
+import { createContext } from "react";
 
 import { Colors } from "../constants/Colors";
-import ThemedView from '../components/ThemedView';
-import ThemedText from '../components/ThemedText';
+import ThemedView from "../components/ThemedView";
+import ThemedText from "../components/ThemedText";
 import Spacer from "../components/Spacer";
-import ThemedLogo from '../components/ThemedLogo';
+import ThemedLogo from "../components/ThemedLogo";
+import ThemedButton from "../components/ThemedButton";
+import { UserContext } from "../context/userContext";
 
 const Home = () => {
   const colorScheme = useColorScheme();
+  const { signOut } = createContext(UserContext);
   const theme = Colors[colorScheme] ?? Colors.light;
   return (
-    <>    
-    <ThemedView style={styles.container} >
+    <>
+      <ThemedView style={styles.container}>
       <ThemedLogo
         style={{
           height: 100,
@@ -83,12 +87,14 @@ const Home = () => {
           padding: 10,
           margin: 30,
           borderRadius: 5,
-          boxShadow: "4px 4px rgb(217, 255, 0)",}}
+          boxShadow: "4px 4px rgb(217, 255, 0)",
+        }}
       >
         To Login page
       </Link>
+
       </ThemedView>
-      </>
+    </>
 
   );
 };
