@@ -6,18 +6,21 @@ export const UserContext = createContext(null);
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [isAuthChecked,setIsAuthChecked] = useState(false);
+
+  const getInitUserData = async () => {
+    try {
+      const response = await account.get();
+      setUser(response);
+    } catch (error) {
+      setUser(null);
+    } finally {
+      setIsAuthChecked(true);
+    }
+  };
 
   useEffect(() => {
-    const fetchCurrentUser = async () => {
-      try {
-        const response = await account.get();
-        setUser(response);
-      } catch (error) {
-        setUser(null);
-      }
-    };
-
-    fetchCurrentUser();
+   getInitUserData();
   }, []);
 
   const register = async (email, password) => {
@@ -56,6 +59,7 @@ export const UserProvider = ({ children }) => {
   const signOut = async () => {
     try {
       await account.deleteSession("current");
+      console.log("logged out successfully ");
       setUser(null);
       return true;
     } catch (error) {
@@ -66,7 +70,7 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, register, logIn, signOut }}>
+    <UserContext.Provider value={{ user, register, logIn, signOut,isAuthChecked }}>
       {children}
     </UserContext.Provider>
   );

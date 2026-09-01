@@ -6,6 +6,7 @@ import Spacer from "../../components/Spacer";
 import ThemedButton from "../../components/ThemedButton";
 import useUser from "../../hooks/userHook";
 
+
 const Profile = () => {
   const { user, signOut } = useUser();
 
@@ -28,7 +29,9 @@ const Profile = () => {
       <Spacer />
       <ThemedText style={styles.heading}>Time to start reading some books...</ThemedText>
       <Spacer />
-      <ThemedButton content="Logout" onPress={handleLogout} style={styles.logoutButton} />
+      {user ? (
+        <ThemedButton content="Logout" onPress={handleLogout} style={styles.logoutButton} />
+      ) : null}
     </ThemedView>
   );
 };

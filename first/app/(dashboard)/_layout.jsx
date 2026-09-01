@@ -2,12 +2,13 @@ import { useColorScheme, StyleSheet } from "react-native";
 import { Stack, Tabs } from "expo-router";
 import { Colors } from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
+import UserOnly from './AuthUserOnly';
 
 const Layout = () => {
   const colorScheme = useColorScheme();
   const theme = Colors[colorScheme] ?? "light";
   return (
-    <>
+    <UserOnly>
       <Tabs
         screenOptions={{
           headerShown: false,
@@ -62,7 +63,7 @@ const Layout = () => {
           }}
         />
       </Tabs>
-    </>
+    </UserOnly>
   );
 };
 
