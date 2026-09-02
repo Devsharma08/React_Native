@@ -6,6 +6,7 @@ import { Colors } from "../constants/Colors";
 
 // context imports
 import {UserProvider} from '../context/userContext';
+import {BookProvider} from '../context/bookContext';
 
 const Layout = () => {
   const colorScheme = useColorScheme();
@@ -13,6 +14,7 @@ const Layout = () => {
 
   return (
     <UserProvider>
+      <BookProvider>
       {/* <Slot/> */}
       <StatusBar value="auto" />
       <Stack
@@ -31,6 +33,7 @@ const Layout = () => {
         <Stack.Screen  name="(dashboard)" options={{ headerShown: false }} />
       </Stack>
       <Text style={styles.footer}>footer</Text>
+      </BookProvider>
     </UserProvider>
   );
 };

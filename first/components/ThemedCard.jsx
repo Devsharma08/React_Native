@@ -1,25 +1,23 @@
-import { StyleSheet, Text, View,useColorScheme } from 'react-native'
-import React from 'react'
+import { StyleSheet, View, useColorScheme } from "react-native";
+import React from "react";
 
-import {Colors} from '../constants/Colors'
+import { Colors } from "../constants/Colors";
 
-const ThemedCard = ({style,...props}) => {
+const ThemedCard = ({ style, children, ...props }) => {
     const colorScheme = useColorScheme();
-    console.log(theme)
-    const theme = Colors[colorScheme] ?? Colors[light];
+        const theme = Colors[colorScheme] ?? Colors.light;
 
     return (
-    <View {...props} style={[
-        {backgroundColor : styles.uiBackground},
-        {...style},styles.card]} >
-    </View> 
-  )
-}
+        <View {...props} style={[{ backgroundColor: theme.uiBackground }, style, styles.card]}>
+            {children}
+        </View>
+    );
+};
 
 const styles = StyleSheet.create({
-    card:{
-        borderRadius:5,
-        padding:20
-    }
+    card: {
+        borderRadius: 5,
+        padding: 20,
+    },
 });
 export default ThemedCard
