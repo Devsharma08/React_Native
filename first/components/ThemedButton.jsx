@@ -8,7 +8,7 @@ const ThemedButton = ({ style, onPress, content }) => {
 
   return (
     <Pressable onPress={onPress} style={[styles.btn, style, { backgroundColor: Colors.primary }]}>
-      <Text style={{ color: theme.text, textAlign: 'center' }}>{content}</Text>
+      <Text style={{ color: "white", textAlign: 'center' }}>{content}</Text>
     </Pressable>
   )
 }

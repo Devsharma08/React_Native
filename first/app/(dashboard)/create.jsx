@@ -37,6 +37,9 @@ const Create = () => {
         author: author.trim(),
         description: description.trim(),
       });
+      setTitle("");
+      setDescription("");
+      setAuthor("");
       router.replace("/books");
     } catch (error) {
       setError(error instanceof Error ? error.message : String(error));
@@ -95,6 +98,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "stretch",
+    justifyContent:"center"
   },
   heading: {
     fontSize: 18,
@@ -106,6 +110,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 40,
     borderColor: "gray",
     alignSelf: "stretch",
+    marginBottom:10
   },
   pressed_btn: {
     opacity: 0.7,
@@ -113,7 +118,8 @@ const styles = StyleSheet.create({
   btn: {
     padding: 10,
     justifyContent: "center",
-    margin: 20,
+    marginVertical: 20,
+    marginHorizontal:40,
     borderRadius: 10,
   },
   errorText: {
@@ -123,6 +129,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 12,
     width: "80%",
+    marginVertical:10,
+    marginHorizontal:40,
     textAlign: "center",
   },
   multiline: {
