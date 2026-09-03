@@ -1,4 +1,5 @@
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, Pressable, StyleSheet } from "react-native";
+import { useRouter } from "expo-router";
 import ThemedView from "../../components/ThemedView";
 import ThemedText from "../../components/ThemedText";
 import ThemedCard from "../../components/ThemedCard";
@@ -8,6 +9,7 @@ import useBook from "../../hooks/bookHook";
 
 const Books = () => {
   const { books } = useBook();
+  const router = useRouter();
 
   return (
     <ThemedView style={styles.container}>
@@ -20,11 +22,15 @@ const Books = () => {
         keyExtractor={(book) => book.$id}
         contentContainerStyle={styles.list}
         renderItem={({ item }) => (
-          <ThemedCard style={styles.card}>
-            <ThemedText isTitle>{item.title}</ThemedText>
-            <ThemedText>{item.author}</ThemedText>
-            <ThemedText>{item.description}</ThemedText>
-          </ThemedCard>
+          <Pressable
+            onPress={() => router.push(`/books/${item.$id}`)}
+            style={({ pressed }) => pressed && styles.pressed}
+          >
+            <ThemedCard style={styles.card}>
+              <ThemedText isTitle>{item.title}</ThemedText>
+              <ThemedText>{item.author}</ThemedText>
+            </ThemedCard>
+          </Pressable>
         )}
         ListEmptyComponent={
           <ThemedText style={styles.empty}>No books yet.</ThemedText>
@@ -52,6 +58,12 @@ const styles = StyleSheet.create({
     },
     card: {
       marginBottom: 12,
+      borderRadius: 5,
+      borderLeftColor: "#201e2b",
+      borderLeftWidth: 5,
+    },
+    pressed: {
+      opacity: 0.7,
     },
     empty: {
       textAlign: "center",
